@@ -36,3 +36,6 @@ document.querySelectorAll('.photo-reel').forEach(reel=>{
  setInterval(()=>{if(!paused&&!document.hidden&&!document.querySelector('#photo-viewer[open]')&&!reel.matches(':hover')&&!reel.contains(document.activeElement))move(1)},Number(reel.dataset.interval));render();
  if(slides.length===1)reel.querySelector('.reel-controls').hidden=true;
 });
+
+// Expand the upcoming event poster, preserving a direct image link without JavaScript.
+(()=>{const dialog=document.querySelector('#upcoming-event-dialog');if(!dialog)return;let opener;document.querySelectorAll('.upcoming-event-open').forEach(link=>link.addEventListener('click',event=>{event.preventDefault();opener=link;dialog.showModal();dialog.querySelector('button').focus();}));dialog.querySelector('button').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close();});dialog.addEventListener('close',()=>{if(opener)opener.focus();});})();
